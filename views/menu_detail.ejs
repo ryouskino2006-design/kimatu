@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= menu.name %> - <%= menu.name %>詳細</title>
+</head>
+<body>
+    <h1>メニュー詳細</h1>
+    <h2><%= menu.name %> の <%= menu.menu %></h2>
+
+    <dl>
+        <dt>ID</dt>
+        <dd><%= menu.id %></dd>
+        
+        <dt>店名</dt>
+        <dd><%= menu.name %></dd>
+        
+        <dt>メニュー名</dt>
+        <dd><%= menu.menu %></dd>
+    
+        <dt>金額</dt>
+        <dd>¥ <%= menu.price.toLocaleString() %></dd>
+        
+        <dt>備考/メモ</dt>
+        <dd><%= menu.note %></dd>
+    </dl>
+
+    <hr>
+    <div>
+
+        <a href="/menu/<%= menu.id %>/edit">編集する</a>
+        
+        <form action="/menu/<%= menu.id %>/delete" method="POST" style="display: inline;" onsubmit="return confirm('本当にメニュー「<%= menu.name %>」の「<%= menu.menu %>」を削除しますか？');">
+            <button type="submit">削除する</button>
+        </form>
+    </div>
+    
+    <p><a href="/menu">&larr; メニュー一覧へ戻る</a></p>
+
+</body>
+</html>
