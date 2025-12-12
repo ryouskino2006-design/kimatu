@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>メニュー一覧</title>
+</head>
+<body>
+    <h1>昼飯の流儀システム - メニュー一覧</h1>
+    <p><a href="/menu/new">新規メニュー登録</a></p>
+
+    <h2>登録メニュー一覧</h2>
+
+    <% if (data.length === 0) { %>
+        <p>まだメニューが登録されていません。</p>
+    <% } else { %>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>店名</th>
+                    <th>メニュー名</th>
+                    <th>金額 (¥)</th>
+                    <th>詳細</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% data.forEach((menu) => { %>
+                    <tr>
+                        <td><%= menu.id %></td>
+                        <td><%= menu.name %></td>
+                        <td><%= menu.menu %></td>
+                        <td><%= menu.price.toLocaleString() %></td>
+                        <td><a href="/menu/<%= menu.id %>">詳細を見る</a></td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    <% } %>
+    
+    <hr>
+    <footer>メニュー管理</footer>
+</body>
+</html>
