@@ -92,8 +92,5 @@ app.post("/menu/:id/delete", (req, res) => {
   res.redirect('/menu');
 });
 
-
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+app.listen(8080, () => console.log("Example app listening on port 8080!"));
 });
