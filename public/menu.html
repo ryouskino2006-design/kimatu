@@ -1,1 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新規メニュー登録</title>
+</head>
+<body>
+    <h1>新規メニュー登録</h1>
+    <p>（静的HTMLフォーム）</p>
 
+    <!-- 新規登録処理のPOSTエンドポイント (/menu) に送信 -->
+    <form action="/menu" method="POST">
+        
+        <div>
+            <label for="name">店名 *</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div>
+            <label for="name">メニュー名</label>
+            <input type="text" id="menu" name="menu" required>
+        </div>
+        <div>
+            <label for="price">金額 (¥) *</label>
+            <input type="number" id="price" name="price" required min="0">
+        </div>
+
+        <div>
+            <label for="note">備考</label>
+            <textarea id="note" name="note" rows="4"></textarea>
+        </div>
+
+        <button type="submit">メニューを登録する</button>
+        <a href="/menu">キャンセルして一覧に戻る</a>
+    </form>
+
+</body>
+</html>
