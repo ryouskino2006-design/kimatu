@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head><meta charset="UTF-8"><title>アニメ詳細</title></head>
+<body>
+    <h1>作品詳細</h1>
+    <p><strong>ID:</strong> <%= anime.id %></p>
+    <p><strong>ジャンル:</strong> <%= anime.Genre %></p>
+    <p><strong>作品名:</strong> <%= anime.name %></p>
+    <p><strong>感想:</strong> <%= anime.note %></p>
+    <hr>
+    <a href="/anime/<%= anime.id %>/edit">編集</a>
+    <a href="/anime_delete/<%= anime.id %>" onclick="return confirm('削除しますか？');">削除</a>
+    <br><br>
+    <a href="/anime">一覧へ戻る</a>
+</body>
+</html>
