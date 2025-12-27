@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head><meta charset="UTF-8"><title>アニメ登録</title></head>
+<body>
+    <h1>新規アニメ登録</h1>
+    <form action="/anime/add" method="GET">
+        <div>ジャンル: <input type="text" name="Genre" required></div>
+        <div>作品名: <input type="text" name="name" required></div>
+        <div>感想: <textarea name="note" rows="4"></textarea></div>
+        <button type="submit">登録する</button>
+        <a href="/anime">戻る</a>
+    </form>
+</body>
+</html>
