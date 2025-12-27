@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= game.name %> を編集</title>
+</head>
+<body>
+    <h1>ゲーム編集 (ID: <%= game.id %>)</h1>
+    <h2><%= game.name %> の編集フォーム</h2>
+
+    <form action="/game_update/<%= game.id %>" method="GET">
+        <div>
+            <label>ジャンル</label>
+            <input type="text" name="genre" value="<%= game.genre %>" required>
+        </div>
+        <div>
+            <label>ゲーム名</label>
+            <input type="text" name="game" value="<%= game.name %>" required>
+        </div>
+        <div>
+            <label>感想</label>
+            <textarea name="note" rows="4"><%= game.note %></textarea>
+        </div>
+        <button type="submit">内容を更新する</button>
+    </form>
+    
+    <p><a href="/game/<%= game.id %>">キャンセルして詳細に戻る</a></p>
+    
+
+</body>
+</html>
