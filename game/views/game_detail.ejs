@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= game.name %> 詳細</title>
+</head>
+<body>
+    <h1>ゲーム詳細</h1>
+    <h2><%= game.name %>について</h2>
+
+    <dl>
+        <dt>ID</dt>
+        <dd><%= game.id %></dd>
+        
+        <dt>ジャンル</dt>
+        <dd><%= game.genre %></dd>
+        
+        <dt>ゲーム名</dt>
+        <dd><%= game.name %></dd>
+    
+        <dt>感想</dt>
+        <dd><%= game.note %></dd>
+    </dl>
+    
+    <hr>
+    <div>
+        <a href="/game/<%= game.id %>/edit">編集する</a>
+        <a href="/game_delete/<%= game.id %>" onclick="return confirm('本当に削除しますか？');">削除する</a>
+    </div>
+    
+    <p><a href="/game">&larr; ゲーム一覧へ戻る</a></p>
+    
+
+</body>
+</html>
