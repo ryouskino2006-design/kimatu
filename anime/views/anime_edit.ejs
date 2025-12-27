@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head><meta charset="UTF-8"><title>アニメ編集</title></head>
+<body>
+    <h1><%= anime.name %> を編集</h1>
+    <form action="/anime_update/<%= anime.id %>" method="GET">
+        <div>ジャンル: <input type="text" name="Genre" value="<%= anime.Genre %>" required></div>
+        <div>作品名: <input type="text" name="anime" value="<%= anime.name %>" required></div>
+        <div>感想: <textarea name="note" rows="4"><%= anime.note %></textarea></div>
+        <button type="submit">更新する</button>
+    </form>
+</body>
+</html>
