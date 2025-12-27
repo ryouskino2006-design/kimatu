@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ゲーム一覧</title>
+</head>
+<body>
+    <h1>ゲーム登録システム - ゲームー一覧</h1>
+    <a href="/game/new">新規ゲーム登録</a>
+
+    <h2>登録メニュー一覧</h2>
+
+    <% if (data.length === 0) { %>
+        <p>まだゲームが登録されていません。</p>
+    <% } else { %>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>ジャンル</th>
+                    <th>ゲーム名</th>
+                    <th>詳細</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% data.forEach((game) => { %>
+                    <tr>
+                        <td><%= game.id %></td>
+                        <td><%= game.genre %></td>
+                        <td><%= game.name %></td>
+                        <td><a href="/game/<%= game.id %>">詳細を見る</a></td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    <% } %>
+    
+    <hr>
+    <footer>ゲーム管理</footer>
+</body>
+</html>
