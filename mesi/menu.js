@@ -2,11 +2,10 @@
 
 const express = require("express");
 const app = express();
-
+app.use(express.urlencoded({ extended: true }));
 
 app.use("/public", express.static(__dirname + "/public"));
 app.set('view engine', 'ejs');
-
 
 let nextId = 5;
 
@@ -20,7 +19,6 @@ let lunchMenu = [
 const findMenuById = (id) => lunchMenu.find(menu => menu.id === parseInt(id));
 const findMenuIndexById = (id) => lunchMenu.findIndex(menu => menu.id === parseInt(id));
 
-
 app.get("/", (req, res) => {
   res.redirect('/menu');
 });
@@ -30,22 +28,20 @@ app.get("/menu", (req, res) => {
 });
 
 app.get("/menu/new", (req, res) => {
-  res.redirect('/public/menu_new.html');
+  res.render('menu_new');
 });
 
-app.post("/menu", (req, res) => {
+app.get("/menu/add", (req, res) => {
   const newMenu = {
     id: nextId++,
-    name: req.body.name,
-    menu: req.body.menu,
-    price: parseInt(req.body.price),
-    note: req.body.note,
+    name: req.query.name,
+    menu: req.query.menu,
+    price: parseInt(req.query.price),
+    note: req.query.note,
   };
   lunchMenu.push(newMenu);
-  console.log("新規メニュー登録:", newMenu);
   res.redirect('/menu');
 });
-
 
 app.get("/menu/:id", (req, res) => {
   const menu = findMenuById(req.params.id);
@@ -54,7 +50,6 @@ app.get("/menu/:id", (req, res) => {
   }
   res.render('menu_detail', { menu: menu });
 });
-
 
 app.get("/menu/:id/edit", (req, res) => {
   const menu = findMenuById(req.params.id);
@@ -65,35 +60,29 @@ app.get("/menu/:id/edit", (req, res) => {
 });
 
 
-app.post("/menu/:id", (req, res) => {
+app.get("/menu/:id/update", (req, res) => {
   const index = findMenuIndexById(req.params.id);
   if (index === -1) {
-    return res.status(404).send("更新対象のメニューが見つかりません。");
+    return res.status(404).send("更新対象が見つかりません。");
   }
 
-  lunchMenu[index].name = req.body.name;
-  lunchMenu[index].menu = req.body.menu; 
-  lunchMenu[index].price = parseInt(req.body.price);
-  lunchMenu[index].note = req.body.note;
+  lunchMenu[index].name = req.query.name;
+  lunchMenu[index].menu = req.query.menu; 
+  lunchMenu[index].price = parseInt(req.query.price);
+  lunchMenu[index].note = req.query.note;
 
-  console.log(`メニューID ${req.params.id} を更新しました。`);
   res.redirect(`/menu/${req.params.id}`);
 });
 
 
-app.post("/menu/:id/delete", (req, res) => {
+app.get("/menu/:id/delete", (req, res) => {
   const index = findMenuIndexById(req.params.id);
   if (index === -1) {
-    return res.status(404).send("削除対象のメニューが見つかりません。");
+    return res.status(404).send("削除対象が見つかりません。");
   }
 
   lunchMenu.splice(index, 1);
-  console.log(`メニューID ${req.params.id} を削除しました。`);
   res.redirect('/menu');
 });
 
-
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+app.listen(8080, () => console.log("Example app listening on port 8080!"));
