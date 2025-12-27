@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>アニメ一覧</title>
+</head>
+<body>
+    <h1>アニメ鑑賞記録システム</h1>
+    <p><a href="/anime/new">新規アニメ登録</a></p>
+
+    <h2>登録アニメ一覧</h2>
+
+    <% if (data.length === 0) { %>
+        <p>まだデータがありません。</p>
+    <% } else { %>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>ジャンル</th>
+                    <th>作品名</th>
+                    <th>詳細</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% data.forEach((anime) => { %>
+                    <tr>
+                        <td><%= anime.id %></td>
+                        <td><%= anime.Genre %></td>
+                        <td><%= anime.name %></td>
+                        <td><a href="/anime/<%= anime.id %>">詳細を見る</a></td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    <% } %>
+    
+    <hr>
+    <footer>アニメ管理システム</footer>
+</body>
+</html>
